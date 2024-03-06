@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ loggedIn, setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,6 +25,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         setError("");
         navigate("/");
+        setLoggedIn(true);
       }
     } catch (err) {
       console.error(err);

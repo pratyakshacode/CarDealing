@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Signup = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [location, setLocation] = useState("");
@@ -26,6 +26,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         setError("");
         navigate("/");
+        setLoggedIn(true);
       }
     } catch (error) {}
   };
@@ -77,4 +78,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

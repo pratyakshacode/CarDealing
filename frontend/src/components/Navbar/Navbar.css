@@ -13,6 +13,7 @@ nav ul {
 nav ul li {
   margin: 0 2.4rem;
 }
+
 nav ul li a {
   text-decoration: none;
   color: white;
@@ -21,7 +22,6 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  /* color: rgb(87, 87, 87); */
   color: rgb(195, 190, 190);
 }
 
@@ -29,12 +29,73 @@ nav ul li a:hover {
   background-color: rgb(3, 26, 43);
   color: white;
   border: none;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
+  padding: 7px;
   cursor: pointer;
-  border-radius: 5px;
-  transition-duration: 0.4s;
+  border-radius: 7px;
+  justify-self: right;
+}
+
+#side-navigation-bar {
+  position: absolute;
+  height: 100%;
+  width: 300px;
+  left: -300px;
+  /* border: 2px solid black; */
+  top: 65px;
+  background: linear-gradient(135deg, rgba(165, 206, 221, 0.8), black);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+#side-navigation-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 80%;
+  width: 100%;
+  /* border: 2px solid black; */
+}
+
+#side-navigation-bar ul li {
+  margin: 1rem 0;
+  background-color: #0098d0;
+  width: 95%;
+  padding: 10px;
+  border-radius: 0px 10px 10px 0px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s linear all;
+}
+#side-navigation-bar ul li:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.show-side-navigation-bar {
+  transform: translateX(300px);
+  transition: transform 0.3s linear;
+}
+
+.hide-side-navigation-bar {
+  transform: translateX(0px);
+  transition: 0.3s transform linear;
+}
+
+#toggle-sidebar-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: large;
+  transition: 0.2s linear all;
 }
