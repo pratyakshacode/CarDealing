@@ -1,0 +1,88 @@
+#home-container {
+  display: flex;
+  height: 92vh;
+  width: 100%;
+}
+
+#home-container .home-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#home-service-container img {
+  height: 80%;
+  width: 80%;
+}
+
+#home-intro-container {
+  padding: 20px !important;
+}
+#home-intro-container h1 {
+  font-size: 3rem;
+  margin: 1rem;
+  text-align: center;
+}
+#home-intro-container p {
+  font-size: 1.4rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+#home-dealnow {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#home-dealnow input {
+  height: 45px;
+  width: 70%;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid gray;
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+#home-dealnow button {
+  height: 40px;
+  width: 150px;
+  margin: 2px;
+  border: 0px;
+  background-color: rgba(9, 145, 160, 0.8);
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+@media (max-width: 768px) {
+  #home-container {
+    flex-direction: column;
+  }
+  #home-service-container img {
+    height: 50%;
+    width: 50%;
+  }
+  #home-intro-container h1 {
+    font-size: 2rem;
+  }
+  #home-intro-container p {
+    font-size: 1rem;
+  }
+  #home-dealnow input {
+    height: 35px;
+    width: 70%;
+  }
+  #home-dealnow button {
+    height: 30px;
+    width: 150px;
+  }
+    
+}
