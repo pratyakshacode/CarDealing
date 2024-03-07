@@ -1,16 +1,22 @@
 import React from "react";
 import "./Card.css";
-const Card = ({ name, type, model, car_info }) => {
+import { useNavigate } from "react-router-dom";
+const Card = ({ car_id, name, type, model, car_info }) => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="card">
-        <img src="/car.jpg" alt="Car" />
         <div className="card-body">
           <h2>{name}</h2>
           <h4>{model}</h4>
           <p>{car_info}</p>
           <h4>{type}</h4>
-            <button id="deal-car-button">Get Now</button>
+          <button
+            id="deal-car-button"
+            onClick={() => navigate(`/cars/${car_id}`)}
+          >
+            Get Now
+          </button>
         </div>
       </div>
     </div>

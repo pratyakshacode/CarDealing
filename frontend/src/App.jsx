@@ -6,6 +6,7 @@ import "./App.css";
 import Signup from "./pages/Signup/Signup";
 import { useState } from "react";
 import Cars from "./pages/Cars/Cars";
+import CarDetails from "./pages/CarDetails/CarDetails";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
@@ -27,6 +28,7 @@ const App = () => {
             setLoggedIn={setLoggedIn}
           />
           <Route path="/cars" element={<Cars />} />
+          <Route path="/cars/:id" element={<CarDetails />} />
         </Routes>
       </Router>
     </>
