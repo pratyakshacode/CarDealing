@@ -18,8 +18,17 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
             <Link to={"/login"}>Login</Link>
           </li>
         )}
-      </ul>
 
+      </ul>
+      {loggedIn && <button
+          id="logout-button"
+          onClick={() => {
+            setLoggedIn(false);
+            localStorage.removeItem("token");
+          }}
+        >
+          logout
+        </button>}
       <button onClick={() => setToggle(!toggle)} id="toggle-sidebar-button">
         {!toggle ? "|||" : "X"}
       </button>
@@ -31,20 +40,28 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
         }
       >
         <ul>
-          <li>
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/cars"}>Cars</Link>
-          </li>
-          <li>
-            <Link to={"/contact"}>Contact</Link>
-          </li>
           {!loggedIn && (
             <li>
-              <Link to={"/login"}>Login</Link>
+              <Link to={"/login"} onClick={() => setToggle(!toggle)}>
+                Login
+              </Link>
             </li>
           )}
+          <li>
+            <Link to={"/"} onClick={() => setToggle(!toggle)}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to={"/cars"} onClick={() => setToggle(!toggle)}>
+              Cars
+            </Link>
+          </li>
+          <li>
+            <Link to={"/contact"} onClick={() => setToggle(!toggle)}>
+              Contact
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

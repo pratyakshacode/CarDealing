@@ -26,7 +26,7 @@ nav ul li a:hover {
 }
 
 #logout-button {
-  background-color: rgb(3, 26, 43);
+  background-color: transparent;
   color: white;
   border: none;
   text-align: center;
@@ -35,6 +35,8 @@ nav ul li a:hover {
   cursor: pointer;
   border-radius: 7px;
   justify-self: right;
+  font-size: large;
+  
 }
 
 #side-navigation-bar {
