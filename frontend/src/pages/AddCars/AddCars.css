@@ -1,0 +1,59 @@
+#add-car-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+}
+
+#add-car-container input,
+textarea {
+  height: 50px;
+  width: 100%;
+  margin: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid gray;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  color: gray;
+}
+
+#add-car-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #063730;
+  text-align: center;
+}
+
+#car_info {
+  height: 150px !important;
+}
+#add-car-container label {
+  font-weight: bold;
+  color: gray;
+}
+#added-info {
+  color: red;
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+#add-car-container .add-car-input {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  /* border: 2px solid black; */
+}
+
+#add-car-container button {
+  margin: 10px;
+  padding: 10px 1.2rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  background-color: #26bfab;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

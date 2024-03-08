@@ -10,6 +10,7 @@ const CarDetails = () => {
   const id = params.id;
 
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
   const fetchCarDetails = async () => {
     try {
       const response = await fetch(`http://localhost:3000/api/cars/${id}`);
@@ -61,7 +62,8 @@ const CarDetails = () => {
           <h1 style={{ fontSize: "2.2rem" }}>Description of Car</h1>
 
           <span>{carDetails.type}</span>
-          <span>{carDetails.car_info}</span>
+          <h3>Dealer</h3>
+          <p>{}</p>
           <button onClick={() => setShow(!show)}>Buy Now</button>
         </div>
       </div>

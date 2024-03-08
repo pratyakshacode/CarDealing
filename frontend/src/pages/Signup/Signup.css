@@ -1,0 +1,13 @@
+#signup-container {
+  display: flex;
+  height: 100%;
+  width: 98vw;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 1rem;
+}

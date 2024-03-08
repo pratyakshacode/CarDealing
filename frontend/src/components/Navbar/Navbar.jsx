@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = ({ loggedIn, setLoggedIn }) => {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
+
+  const token = localStorage.getItem("token");
+  if (token) {
+    const { exp } = jwtDecode(token);
+
+    if (Date.now() >= exp * 1000) {
+      setLoggedIn(false);
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+  }
+
+  const role = token ? jwtDecode(token).role : null;
+
   return (
     <nav>
       <ul>
@@ -18,17 +34,19 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
             <Link to={"/login"}>Login</Link>
           </li>
         )}
-
       </ul>
-      {loggedIn && <button
+      {loggedIn && (
+        <button
           id="logout-button"
           onClick={() => {
             setLoggedIn(false);
             localStorage.removeItem("token");
+            navigate("/login");
           }}
         >
           logout
-        </button>}
+        </button>
+      )}
       <button onClick={() => setToggle(!toggle)} id="toggle-sidebar-button">
         {!toggle ? "|||" : "X"}
       </button>
@@ -52,9 +70,23 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
               Home
             </Link>
           </li>
+          {role === "dealer" && (
+            <li>
+              <Link to={"/cars/addCar"} onClick={() => setToggle(!toggle)}>
+                Add New Car
+              </Link>
+            </li>
+          )}
+          {role === "dealer" && (
+            <li>
+              <Link to={"/cars/mycars"} onClick={() => setToggle(!toggle)}>
+                Your Added Cars
+              </Link>
+            </li>
+          )}
           <li>
             <Link to={"/cars"} onClick={() => setToggle(!toggle)}>
-              Cars
+              All Cars
             </Link>
           </li>
           <li>

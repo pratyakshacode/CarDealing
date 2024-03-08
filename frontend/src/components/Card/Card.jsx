@@ -9,7 +9,8 @@ const Card = ({ car_id, name, type, model, car_info }) => {
         <div className="card-body">
           <h2>{name}</h2>
           <h4>{model}</h4>
-          <p>{car_info}</p>
+          <h4>Dealer: </h4>
+          <p>{car_info.dealership_email}</p>
           <h4>{type}</h4>
           <button
             id="deal-car-button"

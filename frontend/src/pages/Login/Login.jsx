@@ -6,17 +6,20 @@ const Login = ({ loggedIn, setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const [role, setRole] = useState("user");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, role }),
       });
       const data = await response.json();
       if (data.message) {
@@ -54,6 +57,18 @@ const Login = ({ loggedIn, setLoggedIn }) => {
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="role">You are : </label>
+              <select
+                name="role"
+                id="role"
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="user">User</option>
+                <option value="dealer">Dealer</option>
+              </select>
             </div>
             <button type="submit">Login</button>
             <div className="validation-error">
