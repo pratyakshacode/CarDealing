@@ -25,6 +25,13 @@ nav ul li a:hover {
   color: rgb(195, 190, 190);
 }
 
+#logout-li {
+  background-color: rgb(147, 25, 57) !important;
+}
+
+#logout-li:hover {
+  background-color: rgb(195, 2, 69) !important;
+}
 #logout-button {
   background-color: transparent;
   color: white;
@@ -36,7 +43,15 @@ nav ul li a:hover {
   border-radius: 7px;
   justify-self: right;
   font-size: large;
-  
+}
+
+#close-sidebar-cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 65px;
+  z-index: 0;
+  background-color: rgba(126, 125, 125, 0.5);
 }
 
 #side-navigation-bar {

@@ -8,6 +8,7 @@ import { useState } from "react";
 import Cars from "./pages/Cars/Cars";
 import CarDetails from "./pages/CarDetails/CarDetails";
 import AddCars from "./pages/AddCars/AddCars";
+import Deals from "./pages/Deals/Deals";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/cars/:id" element={<CarDetails />} />
           <Route path="/cars/addCar" element={<AddCars />} />
           <Route path="/cars/mycars" element={<Cars />} />
+          <Route path="/mydeals" element={<Deals />} />
         </Routes>
       </Router>
     </>

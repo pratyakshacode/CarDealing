@@ -8,9 +8,9 @@ const CarDetails = () => {
 
   const params = useParams();
   const id = params.id;
-
   const [show, setShow] = useState(false);
-  const [email, setEmail] = useState("");
+  const car_info = carDetails.car_info;
+
   const fetchCarDetails = async () => {
     try {
       const response = await fetch(`http://localhost:3000/api/cars/${id}`);
@@ -28,30 +28,40 @@ const CarDetails = () => {
     }
   };
 
+  const handleBuyNow = async () => {
+    const response = await fetch("/api/deal", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        car_id: id,
+        dealer_id: car_info.dealership_id,
+      }),
+    });
+
+    const data = await response.json();
+    alert(data.message);
+  };
+
   useEffect(() => {
     fetchCarDetails();
   }, []);
+
   return (
     <div id="car-details-container">
-      <div className="car-picture">
+      <div id="car-picture">
         <img src="/car.png" alt="" />
       </div>
 
       {show && (
         <div id="buy-now-container">
-          <form onSubmit={() => console.log("hello")}>
-            <input type="text" placeholder="Enter your name" />
-            <input type="text" placeholder="Enter your email" />
-            <input type="text" placeholder="Enter your phone number" />
-            <button
-              onClick={() => {
-                setShow(!show);
-                alert("Thank you for buying the car");
-              }}
-            >
-              Buy Now
-            </button>
-          </form>
+          <button id="buy-container-close" onClick={() => setShow(!show)}>
+            X
+          </button>
+          <h1>Do You Really Wants To Buy This Car ? </h1>
+          <button onClick={handleBuyNow}>Buy Now</button>
         </div>
       )}
       <div className="car-details" id="car-description-container">
@@ -59,11 +69,39 @@ const CarDetails = () => {
         <h2>{carDetails.model}</h2>
 
         <div className="car-details-card">
-          <h1 style={{ fontSize: "2.2rem" }}>Description of Car</h1>
-
-          <span>{carDetails.type}</span>
+          <h3>Car Type</h3>
+          <span id="car-type-span">{carDetails.type}</span>
           <h3>Dealer</h3>
-          <p>{}</p>
+
+          <div id="dealer_info">
+            <div className="dealer_info-input">
+              <label htmlFor="dealer-name">Dealer Name</label>
+              <input
+                type="text"
+                value={car_info ? car_info.dealership_name : ""}
+                id="dealer-name"
+                disabled
+              />
+            </div>
+            <div className="dealer_info-input">
+              <label htmlFor="dealer-email">Dealer Email</label>
+              <input
+                type="text"
+                value={car_info ? car_info.dealership_email : ""}
+                id="dealer-email"
+                disabled
+              />
+            </div>
+            <div className="dealer_info-input">
+              <label htmlFor="dealer-location">Dealer Location</label>
+              <input
+                type="text"
+                value={car_info ? car_info.dealership_location : ""}
+                id="dealer-location"
+                disabled
+              />
+            </div>
+          </div>
           <button onClick={() => setShow(!show)}>Buy Now</button>
         </div>
       </div>

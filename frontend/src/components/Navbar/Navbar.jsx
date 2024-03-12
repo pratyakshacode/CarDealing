@@ -35,22 +35,13 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           </li>
         )}
       </ul>
-      {loggedIn && (
-        <button
-          id="logout-button"
-          onClick={() => {
-            setLoggedIn(false);
-            localStorage.removeItem("token");
-            navigate("/login");
-          }}
-        >
-          logout
-        </button>
-      )}
       <button onClick={() => setToggle(!toggle)} id="toggle-sidebar-button">
         {!toggle ? "|||" : "X"}
       </button>
 
+      {toggle && (
+        <div id="close-sidebar-cover" onClick={() => setToggle(!toggle)} />
+      )}
       <div
         id="side-navigation-bar"
         className={
@@ -73,27 +64,53 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
           {role === "dealer" && (
             <li>
               <Link to={"/cars/addCar"} onClick={() => setToggle(!toggle)}>
-                Add New Car
+                Add a Car
               </Link>
             </li>
           )}
           {role === "dealer" && (
             <li>
               <Link to={"/cars/mycars"} onClick={() => setToggle(!toggle)}>
-                Your Added Cars
+                My Added Cars
               </Link>
             </li>
           )}
-          <li>
-            <Link to={"/cars"} onClick={() => setToggle(!toggle)}>
-              All Cars
-            </Link>
-          </li>
+
+          {loggedIn && (
+            <li>
+              <Link to={"/mydeals"} onClick={() => setToggle(!toggle)}>
+                My Deals
+              </Link>
+            </li>
+          )}
+          {loggedIn && (
+            <li>
+              <Link to={"/cars"} onClick={() => setToggle(!toggle)}>
+                All Cars
+              </Link>
+            </li>
+          )}
           <li>
             <Link to={"/contact"} onClick={() => setToggle(!toggle)}>
               Contact
             </Link>
           </li>
+
+          {loggedIn && (
+            <li id="logout-li">
+              <button
+                id="logout-button"
+                onClick={() => {
+                  setLoggedIn(false);
+                  setToggle(!toggle);
+                  localStorage.removeItem("token");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

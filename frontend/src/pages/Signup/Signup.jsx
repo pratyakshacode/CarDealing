@@ -8,6 +8,7 @@ const Signup = () => {
   const [location, setLocation] = useState("");
   const [role, setRole] = useState("user");
   const [error, setError] = useState("");
+  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,7 +19,7 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password, location, role }),
+        body: JSON.stringify({ name, email, password, location, role }),
       });
 
       const data = await response.json();
@@ -36,6 +37,15 @@ const Signup = () => {
         <div id="login-form-container">
           <form id="login-form" onSubmit={handleSubmit}>
             <h1>Create Your Account</h1>
+            <div className="input-container">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
             <div className="input-container">
               <label htmlFor="email">Email</label>
               <input

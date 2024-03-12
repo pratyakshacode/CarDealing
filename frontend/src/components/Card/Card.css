@@ -28,10 +28,17 @@
   flex-direction: column;
 }
 
+.car_soldout {
+  background-color: #f0ecec !important;
+}
+
+.car_available {
+  background-color: #91dcef !important;
+}
+
 #deal-car-button {
   width: 100%;
   border-radius: 0px 0px 10px 10px;
-  background-color: #d5d7d8;
   color: #000;
   font-weight: bold;
   padding: 10px;
