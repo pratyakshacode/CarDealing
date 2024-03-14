@@ -48,6 +48,13 @@
   border: 0px;
   margin-top: 10px;
 }
+
+#car_dealer_heading {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  padding: 0;
+  color: #008b92;
+}
 #deal-car-button:hover {
   background-color: #e9ecef;
 }

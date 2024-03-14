@@ -13,9 +13,9 @@ const Card = ({ car_id, name, type, model, car_info, car_status }) => {
         <div className="card-body">
           <h2>{name}</h2>
           <h4>{model}</h4>
-          <h4>Dealer: </h4>
-          <p>{car_info.dealership_email}</p>
           <h4>{type}</h4>
+          <h4 id="car_dealer_heading">Dealer: </h4>
+          <p>{car_info.dealership_email}</p>
           {role === "user" && (
             <button
               id="deal-car-button"

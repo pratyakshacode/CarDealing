@@ -71,3 +71,25 @@
 .pending {
   background-color: rgba(195, 4, 100, 0.8);
 }
+
+.cancelled {
+  background-color: rgb(255, 200, 220) !important;
+}
+
+#deal_cancel_button {
+  padding: 7px 10px;
+  width: 90%;
+  border-radius: 10px;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(195, 4, 100);
+  margin: 10px 0px;
+}
+
+#cancelled_deal_span {
+  color: rgb(255, 109, 36);
+  font-weight: bold;
+  margin: 10px 0px;
+}

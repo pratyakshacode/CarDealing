@@ -5,6 +5,8 @@ import { jwtDecode } from "jwt-decode";
 const DealCard = ({ deal_info, deal_id, status }) => {
   const [dealStatus, setDealStatus] = useState(status);
   const role = jwtDecode(localStorage.getItem("token")).role;
+
+  console.log("dealStatus", dealStatus, status, deal_info, deal_id, role);
   const approveDeal = async () => {
     try {
       await fetch(`/api/deal/${deal_id}`, {
@@ -18,6 +20,21 @@ const DealCard = ({ deal_info, deal_id, status }) => {
     } catch (error) {
       console.log("error in approving the deal", error);
     }
+  };
+
+  const cancelDeal = async () => {
+    try {
+      const response = await fetch(`/api/deal/${deal_id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      alert(data.message);
+      setDealStatus("cancelled");
+    } catch (error) {}
   };
   return (
     <>
@@ -37,14 +54,44 @@ const DealCard = ({ deal_info, deal_id, status }) => {
           </div>
 
           <div className="deal_approve">
-            <button
-              id="deal_approve_button"
-              className={dealStatus}
-              onClick={approveDeal}
-              disabled={role === "user"}
-            >
-              {dealStatus === "pending" ? "Pending" : "Approved"}
-            </button>
+            {dealStatus !== "cancelled" && (
+              <button
+                id="deal_approve_button"
+                className={dealStatus}
+                onClick={approveDeal}
+                disabled={
+                  role === "user" ||
+                  dealStatus === "approved" ||
+                  dealStatus === "cancelled"
+                }
+              >
+                {dealStatus === "pending"
+                  ? "Pending"
+                  : dealStatus === "cancelled"
+                  ? "Cancelled"
+                  : dealStatus === "approved"
+                  ? "Approved"
+                  : "Approve"}
+              </button>
+            )}
+
+            {dealStatus !== "approved" && role === "dealer" && (
+              <button
+                id="deal_cancel_button"
+                onClick={cancelDeal}
+                disabled={
+                  role === "user" ||
+                  dealStatus === "cancelled" ||
+                  dealStatus === "approved"
+                }
+              >
+                {dealStatus === "cancelled" ? "Cancelled" : "Cancel"}
+              </button>
+            )}
+
+            {role === "user" && dealStatus === "cancelled" && (
+              <span id="cancelled_deal_span">Cancelled By Dealer</span>
+            )}
           </div>
         </div>
       </div>

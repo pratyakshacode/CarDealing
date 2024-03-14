@@ -43,6 +43,7 @@ const CarDetails = () => {
 
     const data = await response.json();
     alert(data.message);
+    setShow(!show);
   };
 
   useEffect(() => {
